@@ -5,8 +5,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		/* Bubble Sort */
-		BubbleSort bsort = new BubbleSort();
-		bsort.demoBubbleSort();		
+		BubbleSort bubbleSort = new BubbleSort();
+		bubbleSort.demoBubbleSort();		
 
 	}
 
