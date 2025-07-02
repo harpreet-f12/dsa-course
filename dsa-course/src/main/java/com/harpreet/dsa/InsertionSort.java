@@ -26,7 +26,7 @@ public class InsertionSort {
 	}
 
 	public void demoInsertionSort() {
-		int[] arr = {10, 2,	5, 3, 7, 8};
+		int[] arr = {10, 2, 5, 3, 7, 8};
 		this.insertionSort(arr);
 		System.out.println("Insertion sort on {10, 2, 5, 3, 7, 8}. Output: " + Arrays.toString(arr));
 		
