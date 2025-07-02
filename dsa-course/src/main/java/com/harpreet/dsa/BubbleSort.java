@@ -22,7 +22,7 @@ public class BubbleSort {
 	}	
 
 	public void demoBubbleSort() {
-		int[] arr = {10, 2,	5, 3, 7, 8};
+		int[] arr = {10, 2, 5, 3, 7, 8};
 		this.bubbleSort(arr);
 		System.out.println("Bubble sort on {10, 2, 5, 3, 7, 8}. Output: " + Arrays.toString(arr));
 
