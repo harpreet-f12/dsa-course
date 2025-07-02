@@ -7,6 +7,10 @@ public class Main {
 		/* Bubble Sort */
 		BubbleSort bubbleSort = new BubbleSort();
 		bubbleSort.demoBubbleSort();		
+		
+		/* Insertion Sort */
+		InsertionSort insertionSort = new InsertionSort();
+		insertionSort.demoInsertionSort();
 
 	}
 

@@ -30,10 +30,12 @@ public class BubbleSort {
 		this.bubbleSort(arr2);
 		System.out.println("Bubble sort on {10, 2, 1, 3, 7, 5}. Output: " + Arrays.toString(arr2));
 
+		// already sorted array as input
 		int[] arr3 = {1, 2, 3, 4, 5, 6};
 		this.bubbleSort(arr3);
 		System.out.println("Bubble sort on {1, 2, 3, 4, 5, 6}. Output: " + Arrays.toString(arr3));
 
+		// empty array
 		int[] arr4 = {};
 		this.bubbleSort(arr4);
 		System.out.println("Bubble sort on {}. Output: " + Arrays.toString(arr4));
