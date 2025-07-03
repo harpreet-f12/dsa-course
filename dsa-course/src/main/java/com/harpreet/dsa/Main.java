@@ -11,6 +11,10 @@ public class Main {
 		/* Insertion Sort */
 		InsertionSort insertionSort = new InsertionSort();
 		insertionSort.demoInsertionSort();
+		
+		/* Selection Sort */
+		SelectionSort selectionSort = new SelectionSort();
+		selectionSort.demoSelectionSort();
 
 	}
 
