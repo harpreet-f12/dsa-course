@@ -15,7 +15,11 @@ public class Main {
 		/* Selection Sort */
 		SelectionSort selectionSort = new SelectionSort();
 		selectionSort.demoSelectionSort();
-
+		
+		/* Merge Sort */
+		MergeSort mergeSort = new MergeSort();
+		mergeSort.demoMergeSort();
+		
 	}
 
 }
