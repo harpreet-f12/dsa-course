@@ -20,6 +20,9 @@ public class Main {
 		MergeSort mergeSort = new MergeSort();
 		mergeSort.demoMergeSort();
 		
+		/* Quick Sort */
+		QuickSort quickSort = new QuickSort();
+		quickSort.demoQuickSort();
 	}
 
 }
