@@ -23,6 +23,10 @@ public class Main {
 		/* Quick Sort */
 		QuickSort quickSort = new QuickSort();
 		quickSort.demoQuickSort();
+		
+		/* Heap Sort */
+		HeapSort heapSort = new HeapSort();
+		heapSort.demoHeapSort();
 	}
 
 }
