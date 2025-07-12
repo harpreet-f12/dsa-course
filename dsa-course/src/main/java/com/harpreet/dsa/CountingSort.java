@@ -53,8 +53,8 @@ public class CountingSort {
 			System.out.println("Counting sort on {3, 2, 1, 6, 4}. Output: " + Arrays.toString(sortedArr));
 		} 
 		catch (IllegalArgumentException e) {
-	        System.out.println("Exception calling Couting sort on {3, 2, 1, 6, 4}. " + e.getMessage());
-	    }
+	        	System.out.println("Exception calling Couting sort on {3, 2, 1, 6, 4}. " + e.getMessage());
+	    	}
 				    
 		// bigger input
 		try {
@@ -63,8 +63,8 @@ public class CountingSort {
 			System.out.println("Counting sort on {59, 5, 10, 10, 4, 10, 30}. Output: " + Arrays.toString(sortedArr2));
 		}
 		catch (IllegalArgumentException e) {
-	        System.out.println("Exception calling Couting sort on {59, 5, 10, 10, 4, 10, 30}. " + e.getMessage());
-	    }
+	        	System.out.println("Exception calling Couting sort on {59, 5, 10, 10, 4, 10, 30}. " + e.getMessage());
+	    	}
 		
 		// empty array
 		try {
@@ -73,8 +73,8 @@ public class CountingSort {
 			System.out.println("Counting sort on {}. Output: " + Arrays.toString(sortedArr3));
 		}
 		catch (IllegalArgumentException e) {
-	        System.out.println("Counting sort on {}. Exception raised. " + e.getMessage());
-	    }		
+	        	System.out.println("Counting sort on {}. Exception raised. " + e.getMessage());
+	    	}		
 
 		// null array
 		try { 
@@ -83,8 +83,7 @@ public class CountingSort {
 			System.out.println("Counting sort on null array. Output: " + Arrays.toString(sortedArr4));
 		}
 		catch (IllegalArgumentException e) {
-	        System.out.println("Counting sort on null array. Exception raised. " + e.getMessage());
-	    }
+	        	System.out.println("Counting sort on null array. Exception raised. " + e.getMessage());
+	    	}
 	}
-
 }
