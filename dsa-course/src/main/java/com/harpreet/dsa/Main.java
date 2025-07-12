@@ -27,6 +27,10 @@ public class Main {
 		/* Heap Sort */
 		HeapSort heapSort = new HeapSort();
 		heapSort.demoHeapSort();
+		
+		/* Counting Sort */
+		CountingSort countingSort = new CountingSort();
+		countingSort.demoCountingSort();
 	}
 
 }
