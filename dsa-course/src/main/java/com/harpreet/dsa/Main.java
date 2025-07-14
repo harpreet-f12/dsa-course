@@ -31,6 +31,10 @@ public class Main {
 		/* Counting Sort */
 		CountingSort countingSort = new CountingSort();
 		countingSort.demoCountingSort();
+		
+		/* Radix Sort */
+		RadixSort radixSort = new RadixSort();
+		radixSort.demoRadixSort();
 	}
 
 }
