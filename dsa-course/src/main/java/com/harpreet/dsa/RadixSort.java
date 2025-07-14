@@ -7,7 +7,7 @@ public class RadixSort {
 	public void radixSort(int[] arr) {
 		// validate input
 	    if (arr == null || arr.length == 0) {
-	    	return;
+	    	throw new IllegalArgumentException("Input array must not be null or empty.");
 	    }
 	            
 		// validate input and find maximum value
@@ -78,14 +78,24 @@ public class RadixSort {
 		System.out.println("Radix sort on {1, 2, 3, 4, 5, 6}. Output: " + Arrays.toString(arr3));
 
 		// empty array
-		int[] arr4 = {};
-		this.radixSort(arr4);
-		System.out.println("Radix sort on {}. Output: " + Arrays.toString(arr4));
+		try {
+			int[] arr4 = {};
+			this.radixSort(arr4);
+			System.out.println("Radix sort on {}. Output: " + Arrays.toString(arr4));
+		}
+		catch (IllegalArgumentException e) {
+        	System.out.println("Radix sort on {}. Exception raised. " + e.getMessage());
+    	}		
 
 		// null array
-		int[] arr5 = null;
-		this.radixSort(arr5);
-		System.out.println("Radix sort on null array. Output: " + Arrays.toString(arr5));
+		try {
+			int[] arr5 = null;
+			this.radixSort(arr5);
+			System.out.println("Radix sort on null array. Output: " + Arrays.toString(arr5));
+		}
+		catch (IllegalArgumentException e) {
+        	System.out.println("Radix sort on null array. Exception raised. " + e.getMessage());
+    	}	
 
 		int[] arr6 = {10};
 		this.radixSort(arr6);
