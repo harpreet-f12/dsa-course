@@ -1,4 +1,4 @@
-package com.harpreet.dsa;
+package com.harpreet.dsa.sorting;
 
 public class Main {
 
