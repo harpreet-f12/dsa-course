@@ -1,5 +1,8 @@
 package com.harpreet.dsa.binarytree;
 
+import java.util.Queue;
+import java.util.LinkedList;
+
 public class BinaryTree {
 
 	public static void preorder(Node root) {
@@ -23,6 +26,28 @@ public class BinaryTree {
 			postorder(root.getLeft());
 			postorder(root.getRight());
 			System.out.print(root.getVal() + " ");			
+		}
+	}
+	
+	public static void levelOrder(Node root) {
+		if(root == null) {
+			return;
+		}
+		
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		
+		while(queue.size() > 0) {
+			Node node = queue.remove();
+			System.out.print(node.getVal() + " ");
+			
+			if(node.getLeft() != null) {
+				queue.add(node.getLeft());
+			}
+			
+			if(node.getRight() != null) {
+				queue.add(node.getRight());
+			}
 		}
 	}
 	
