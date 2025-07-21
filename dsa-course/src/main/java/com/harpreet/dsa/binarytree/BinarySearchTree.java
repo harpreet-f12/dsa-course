@@ -88,4 +88,146 @@ public class BinarySearchTree extends BinaryTree {
 		return node;
 	}
 	
+	public void delete(int val) {
+		this.root = deleteRec(this.root, val);
+	}
+	
+	private Node deleteRec(Node node, int val) {
+		if(node == null) {
+			return null;
+		}
+		
+		if(val < node.getVal()) {
+			Node child = deleteRec(node.getLeft(), val);
+			node.setLeft(child);
+		}
+		else if (val > node.getVal()) {
+			Node child = deleteRec(node.getRight(), val);
+			node.setRight(child);
+		}
+		else { 
+			// target node found
+			
+			// case: target node is a leaf node
+			if(node.getLeft() == null && node.getRight() == null) {				
+				return null;
+			}
+			
+			// case: target node has one child
+			else if (node.getLeft() == null || node.getRight() == null) {				
+				return node.getLeft() != null ? node.getLeft() : node.getRight();
+			}
+			
+			// case: target node has two children
+			else {
+				// find successor node				
+				Node successor = node.getRight();
+				while(successor.getLeft() != null) {
+					successor = successor.getLeft();
+				}								
+				
+				// update node's value to that of successor's
+				node.setVal(successor.getVal());
+				
+				// delete successor node
+				Node child = deleteRec(node.getRight(), successor.getVal());
+				node.setRight(child);
+				
+				return node;
+			}
+		}
+		
+		return node;
+	}
+	
+	// find node with minimum value. Do this by traversing
+	// to the left most node.
+	public Node getMin(Node node) {
+		if(node == null) {
+			return null;
+		}
+		
+		while(node.getLeft() != null) {
+			node = node.getLeft();
+		}
+		
+		return node;
+	}
+	
+	// find node with maximum value. Do this by traversing
+	// to the right most node.
+	public Node getMax(Node node) {
+		if(node == null) {
+			return null;
+		}
+		
+		while(node.getRight() != null) {
+			node = node.getRight();
+		}
+		
+		return node;
+	}	
+	
+	// find inorder successor. 
+	public Node getSuccessor(Node node) {
+		if(node == null) {
+			return null;
+		}
+		
+		// if right subtree exists, return the minimum node from the right subtree
+		if(node.getRight() != null) {
+			return getMin(node.getRight());
+		}		
+		// else successor will be found in the parent hierarchy - when a node
+		// is found which is left of it's parent.
+		else {
+			Node p2 = null;
+			Node p1 = root;
+			while(p1 != null) {
+				if(node.getVal() < p1.getVal()) {
+					p2 = p1;
+					p1 = p1.getLeft();
+				}
+				else if(node.getVal() > p1.getVal()) {
+					p1 = p1.getRight();
+				}
+				else {
+					break;
+				}
+			}			
+			return p2;
+		}		
+	}
+	
+	// find inorder predecessor
+	public Node getPredecessor(Node node) {
+		if(node == null) {
+			return null;
+		}
+		
+		// if left subtree exists, return the maximum node from the left subtree
+		if(node.getLeft() != null) {
+			return getMax(node.getLeft());
+		}		
+		// else predecessor will be found in the parent hierarchy - when a node
+		// is found which is right of it's parent.
+		else {
+			Node p2 = null;
+			Node p1 = root;
+			while(p1 != null) {
+				if(node.getVal() < p1.getVal()) {					
+					p1 = p1.getLeft();
+				}
+				else if(node.getVal() > p1.getVal()){
+					p2 = p1;
+					p1 = p1.getRight();
+				}
+				else {
+					break;
+				}
+			}				
+			return p2;
+		}				
+	}	
+	
 }

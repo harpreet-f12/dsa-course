@@ -12,6 +12,8 @@ public class Main {
 		testBSTInsertion();
 		testBSTSearch();
 		testBSTDeletion();
+		testMinMax();
+		testSuccessorPredecessor();
 	}
 	
 	private static void testTraversals() {
@@ -132,6 +134,100 @@ public class Main {
 	}
 	
 	private static void testBSTDeletion() {
+		int[] arr = {50, 40, 70, 30, 45, 60, 80};
+		BinarySearchTree bst = new BinarySearchTree(arr);
 		
+		/*
+		 * Tree looks like this,
+		 * 					50
+		 * 			  40		  70
+		 * 		   30	 45    60	 80
+		 */
+		
+
+		System.out.println("\nBST Level order traversal:");
+		BinaryTree.levelOrder(bst.getRoot());
+		System.out.println("\nExpected: 50 40 70 30 45 60 80");
+		
+		bst.delete(80);
+		System.out.println("\nAfter deletion of 80:");
+		BinaryTree.levelOrder(bst.getRoot());
+		System.out.println("\nExpected: 50 40 70 30 45 60");
+		
+		bst.delete(70);
+		System.out.println("\nAfter deletion of 70:");
+		BinaryTree.levelOrder(bst.getRoot());
+		System.out.println("\nExpected: 50 40 60 30 45");
+		
+		bst.delete(50);
+		System.out.println("\nAfter deletion of 50:");
+		BinaryTree.levelOrder(bst.getRoot());	
+		System.out.println("\nExpected: 60 40 30 45");
+	}
+	
+	private static void testMinMax() {
+		int[] arr = {50, 40, 70, 30, 45, 60, 80, 10, 110};
+		BinarySearchTree bst = new BinarySearchTree(arr);
+		
+		/*
+		 * Tree looks like this,
+		 * 					50
+		 * 			  40		  70
+		 * 		   30	 45    60	 80
+		 * 		10						110
+		 */
+		
+		Node minNode = bst.getMin(bst.getRoot());
+		Node maxNode = bst.getMax(bst.getRoot());
+		
+		System.out.println();
+		System.out.println("Min value: " + minNode.getVal() + " (expected 10)");
+		System.out.println("Max value: " + maxNode.getVal() + " (expected 110)");				
+	}
+	
+	private static void testSuccessorPredecessor() {
+		int[] arr = {50, 40, 70, 30, 45, 60, 80, 10, 110};
+		BinarySearchTree bst = new BinarySearchTree(arr);
+		
+		/*
+		 * Tree looks like this,
+		 * 					50
+		 * 			  40		  70
+		 * 		   30	 45    60	 80
+		 * 		10						110
+		 */
+		
+		System.out.println();
+
+		Node node40 = bst.getRoot().getLeft();
+		Node node60 = bst.getRoot().getRight().getLeft();
+		Node node110 = bst.getRoot().getRight().getRight().getRight();
+		Node node10 = bst.getRoot().getLeft().getLeft().getLeft();
+		
+		Node node = bst.getSuccessor(node40);
+		System.out.println("Successor of 40: " + getValStr(node) + " (expected 45)");
+		
+		node = bst.getSuccessor(node60);
+		System.out.println("Successor of 60: " + getValStr(node) + " (expected 70)");
+		
+		node = bst.getSuccessor(node110);
+		System.out.println("Successor of 110: " + getValStr(node) + " (expected null)");
+		
+		node = bst.getPredecessor(node40);
+		System.out.println("Predecessor of 40: " + getValStr(node) + " (expected 30)");
+		
+		node = bst.getPredecessor(node60);
+		System.out.println("Predecessor of 60: " + getValStr(node) + " (expected 50)");
+		
+		node = bst.getPredecessor(node10);
+		System.out.println("Predecessor of 10: " + getValStr(node) + " (expected null)");
+	}
+	
+	private static String getValStr(Node node) {
+		if(node == null) {
+			return "null";
+		}
+		
+		return String.valueOf(node.getVal());
 	}
 }
