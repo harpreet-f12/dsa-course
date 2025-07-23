@@ -276,6 +276,27 @@ public class Main {
 		 * 		    8	 20    
 		 */
 		isBST = bst.isBST(root);
-		System.out.println("isBST returned: " + isBST + " (expected false)");		
+		System.out.println("isBST returned: " + isBST + " (expected false)");
+		
+		// case 3: pass a binary tree which is a BST in every regard except that
+		// duplicate appears in the right subtree. isBST should return false as
+		// we are adhering to the left side equality rule		
+		root = new Node(20);
+		root.setLeft(new Node(10));
+		root.getLeft().setLeft(new Node(5));
+		root.getLeft().setRight(new Node(15));
+		root.setRight(new Node(25));
+		root.getRight().setLeft(new Node(20));
+		
+		/*
+		 * Tree looks like this,
+		 * 				    20
+		 * 			   10        25
+		 * 		    5	  15  20  
+		 */
+		
+		isBST = bst.isBST(root);
+		System.out.println("isBST returned: " + isBST + " (expected false)");
+		
 	}
 }
