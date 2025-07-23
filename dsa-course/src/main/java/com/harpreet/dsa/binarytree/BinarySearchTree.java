@@ -200,8 +200,8 @@ public class BinarySearchTree extends BinaryTree {
 		if(node.getRight() != null) {
 			return getMinNode(node.getRight());
 		}		
-		// else successor will be found in the parent hierarchy - when a node
-		// is found which is left of it's parent.
+		// else successor will be found in the parent hierarchy - move up in the
+		// tree until a node is found which is left of it's parent.
 		else {
 			Node p2 = null;
 			Node p1 = root;
@@ -231,8 +231,8 @@ public class BinarySearchTree extends BinaryTree {
 		if(node.getLeft() != null) {
 			return getMaxNode(node.getLeft());
 		}		
-		// else predecessor will be found in the parent hierarchy - when a node
-		// is found which is right of it's parent.
+		// else predecessor will be found in the parent hierarchy - move up in the
+		// tree until a node is found which is right of it's parent.
 		else {
 			Node p2 = null;
 			Node p1 = root;
