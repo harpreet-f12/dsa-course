@@ -12,6 +12,7 @@ public class Main {
 		testBSTInsertion();
 		testBSTSearch();
 		testBSTDeletion();
+		testMinMaxNode();
 		testMinMax();
 		testSuccessorPredecessor();
 	}
@@ -165,7 +166,7 @@ public class Main {
 		System.out.println("\nExpected: 60 40 30 45");
 	}
 	
-	private static void testMinMax() {
+	private static void testMinMaxNode() {
 		int[] arr = {50, 40, 70, 30, 45, 60, 80, 10, 110};
 		BinarySearchTree bst = new BinarySearchTree(arr);
 		
@@ -177,12 +178,33 @@ public class Main {
 		 * 		10						110
 		 */
 		
-		Node minNode = bst.getMin(bst.getRoot());
-		Node maxNode = bst.getMax(bst.getRoot());
+		Node minNode = bst.getMinNode(bst.getRoot());
+		Node maxNode = bst.getMaxNode(bst.getRoot());
 		
 		System.out.println();
 		System.out.println("Min value: " + minNode.getVal() + " (expected 10)");
 		System.out.println("Max value: " + maxNode.getVal() + " (expected 110)");				
+	}
+	
+	private static void testMinMax() {
+		int[] arr = {50, 70, 60, 80, 110};
+		BinarySearchTree bst = new BinarySearchTree(arr);
+		
+		/*
+		 * Tree looks like this,
+	  					 50
+	  			  		      70
+	  		   	           60	 80
+	 							  	110
+		 */
+		
+		int min = bst.getMin(bst.getRoot());
+		int max = bst.getMax(bst.getRoot());
+		
+		System.out.println();
+		System.out.println("Min value: " + min + " (expected 50)");
+		System.out.println("Max value: " + max + " (expected 110)");
+		
 	}
 	
 	private static void testSuccessorPredecessor() {

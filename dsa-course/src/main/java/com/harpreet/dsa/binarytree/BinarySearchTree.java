@@ -140,9 +140,20 @@ public class BinarySearchTree extends BinaryTree {
 		return node;
 	}
 	
-	// find node with minimum value. Do this by traversing
-	// to the left most node.
-	public Node getMin(Node node) {
+	// find minimum value. Input can be root of the tree or a subtree.
+	public int getMin(Node node) {
+		Node retNode = getMinNode(node);
+		
+		if(retNode == null) {
+			throw new IllegalArgumentException("Tree is empty, cannot get minimum value.");
+		}
+		
+		return retNode.getVal();		
+	}
+	
+	// find node with minimum value. Input can be root of 
+	// the tree or a subtree.
+	public Node getMinNode(Node node) {
 		if(node == null) {
 			return null;
 		}
@@ -154,9 +165,20 @@ public class BinarySearchTree extends BinaryTree {
 		return node;
 	}
 	
-	// find node with maximum value. Do this by traversing
-	// to the right most node.
-	public Node getMax(Node node) {
+	// find maximum value. Input can be root of the tree or a subtree
+	public int getMax(Node node) {
+		Node retNode = getMaxNode(node);
+		
+		if(retNode == null) {
+			throw new IllegalArgumentException("Tree is empty, cannot get maximum value.");
+		}
+		
+		return retNode.getVal();		
+	}
+	
+	// find node with maximum value. Input can be root of 
+	// the tree or a subtree
+	public Node getMaxNode(Node node) {
 		if(node == null) {
 			return null;
 		}
@@ -176,7 +198,7 @@ public class BinarySearchTree extends BinaryTree {
 		
 		// if right subtree exists, return the minimum node from the right subtree
 		if(node.getRight() != null) {
-			return getMin(node.getRight());
+			return getMinNode(node.getRight());
 		}		
 		// else successor will be found in the parent hierarchy - when a node
 		// is found which is left of it's parent.
@@ -207,7 +229,7 @@ public class BinarySearchTree extends BinaryTree {
 		
 		// if left subtree exists, return the maximum node from the left subtree
 		if(node.getLeft() != null) {
-			return getMax(node.getLeft());
+			return getMaxNode(node.getLeft());
 		}		
 		// else predecessor will be found in the parent hierarchy - when a node
 		// is found which is right of it's parent.
