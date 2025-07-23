@@ -252,4 +252,59 @@ public class BinarySearchTree extends BinaryTree {
 		}				
 	}	
 	
+	// Verify whether the binary tree is a BST
+	public boolean isBST(Node root) {
+		return isBSTRec(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+	
+	private boolean isBSTRec(Node root, int min, int max) {
+		// An empty tree is a BST
+		if (root == null) {
+			return true;
+		}
+		
+		// Check if the current node's value is outside the allowed range
+		if (root.getVal() < min || root.getVal() > max) {
+			return false;
+		}
+	
+		// Recursively check the subtrees
+	    return isBSTRec(root.getLeft(), min, root.getVal()) && 
+	    	   isBSTRec(root.getRight(), root.getVal(), max);
+	
+	}
+	
+	/*
+	 * Given a binary tree, check if it is a binary search tree or not
+	 *
+	public boolean isBST(Node root) {
+		if(root == null) {
+			return false;
+		}
+		
+		boolean isLeftOk = checkLeftSubtree(root.left(), root.value());
+		boolean isRightOk = checkRightSubtree(root.right(), root.value());
+		
+		return isLeftOk && isRightOk;
+	}
+	
+	private boolean checkLeftSubtree(Node<Integer> node, int upperBound) {
+		if(node.value() <= upperBound) {
+			boolean isLeftOk = checkLeftSubtree(node.left(), node.value());
+			boolean isRightOk = checkRightSubtree(node.right(), node.value());
+			return isLeftOk && isRightOk;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	private boolean checkRightSubtree(Node<Integer> node, int lowerBound) {
+		if(node.value() <= lowerBound) {
+			return false;
+		}
+		
+		return true;
+	}*/
+	
 }

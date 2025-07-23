@@ -15,6 +15,7 @@ public class Main {
 		testMinMaxNode();
 		testMinMax();
 		testSuccessorPredecessor();
+		testIsBST();
 	}
 	
 	private static void testTraversals() {
@@ -251,5 +252,30 @@ public class Main {
 		}
 		
 		return String.valueOf(node.getVal());
+	}
+	
+	private static void testIsBST() {
+		int[] arr = {50, 40, 70, 30, 45, 60, 80, 10, 110};
+		BinarySearchTree bst = new BinarySearchTree(arr);
+		
+		// case 1: since we are passing root of BST below, isBST() should return true
+		boolean isBST = bst.isBST(bst.getRoot());
+		System.out.println("\nisBST returned: " + isBST + " (expected true)");
+		
+		// case 2: pass a binary tree which is not BST
+		Node root = new Node(10);
+		root.setLeft(new Node(9));
+		root.getLeft().setLeft(new Node(8));
+		root.getLeft().setRight(new Node(20));
+		root.setRight(new Node(11));
+		
+		/*
+		 * Tree looks like this,
+		 * 				   10
+		 * 			   9       11
+		 * 		    8	 20    
+		 */
+		isBST = bst.isBST(root);
+		System.out.println("isBST returned: " + isBST + " (expected false)");		
 	}
 }
