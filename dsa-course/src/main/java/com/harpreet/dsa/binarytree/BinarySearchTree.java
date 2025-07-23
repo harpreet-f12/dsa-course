@@ -264,7 +264,7 @@ public class BinarySearchTree extends BinaryTree {
 		}
 		
 		// Check if the current node's value is outside the allowed range
-		if (root.getVal() < min || root.getVal() > max) {
+		if (root.getVal() <= min || root.getVal() > max) {
 			return false;
 		}
 	
