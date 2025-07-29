@@ -32,7 +32,7 @@ public class Fibonacci {
 			throw new IllegalArgumentException("Fibonacci position cannot be negative.");
 		}
 		
-		int[] arr = new int[n+1];
+		int[] arr = new int[n+1]; // default initialization is zero
 		arr[0] = 0;
 		arr[1] = 1;		
 		
