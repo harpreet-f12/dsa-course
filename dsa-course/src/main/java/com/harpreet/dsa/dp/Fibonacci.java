@@ -13,9 +13,10 @@ public class Fibonacci {
 		return fibImpl(n);
 	}
 	
-	// What a Beauty! fibImpl is a simple code. Just delegate a problem to subproblems,
-	// add their result and return. The subproblems will get handled by the same 
-	// recursive code.
+	// A simple and elegant recursive approach. Just delegate the task to
+	// subproblems, add their results and return. The subproblems will get 
+	// solved by the same recursive code. But the time complexity is O(2^n)
+	// which is huge.
 	private int fibImpl(int n) {
 		if(n == 0 || n == 1) {
 			return n;
