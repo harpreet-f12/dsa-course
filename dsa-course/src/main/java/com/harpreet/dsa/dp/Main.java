@@ -5,6 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 		testKnapsack01();		
 		testFibonacci();
+		testKnapsackUnbounded();
 	}
 	
 	private static void testKnapsack01() {
@@ -66,4 +67,33 @@ public class Main {
 		System.out.println("Fibonacci 1st term: " + fibonacci.fibTabOpt(1) + " (expected 1)");		
 	}
 	
+	private static void testKnapsackUnbounded() {		
+		System.out.println();
+		
+		KnapsackUnbounded knapsackUnbounded = new KnapsackUnbounded();
+//		int capacity = 8;
+//		int[] wts = {1, 3, 4, 5};
+//		int[] vals = {10, 40, 50, 70};
+		
+		int capacity = 7;
+		int[] wts = {3, 2, 5};
+		int[] vals = {40, 70, 80};
+		
+		int maxValue = knapsackUnbounded.knapsackUnbdMemo(capacity, wts, vals);
+		System.out.println("KnapsackUnbounded: knapsackUnbdMemo() returned max value: " + 
+							maxValue + " (expected 210)");
+		
+		maxValue = knapsackUnbounded.knapsackUnbdMemo(capacity, wts, null);
+		System.out.println("KnapsackUnbounded: knapsackUnbdMemo() returned max value: " + 
+							maxValue + " (expected 0)");
+		
+		maxValue = knapsackUnbounded.knapsackUnbdTab(capacity, wts, vals);
+		System.out.println("KnapsackUnbounded: knapsackUnbdTab() returned max value: " + 
+							maxValue + " (expected 210)");		
+		
+		maxValue = knapsackUnbounded.knapsackUnbdTabOpt(capacity, wts, vals);
+		System.out.println("KnapsackUnbounded: knapsackUnbdTabOpt() returned max value: " + 
+							maxValue + " (expected 210)");		
+		
+	}
 }
