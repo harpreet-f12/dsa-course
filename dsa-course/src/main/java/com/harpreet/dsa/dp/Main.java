@@ -6,33 +6,72 @@ public class Main {
 		testKnapsack01();		
 		testFibonacci();
 		testKnapsackUnbounded();
+		testCoinChange();
 	}
 	
 	private static void testKnapsack01() {
 		Knapsack01 knapsack01 = new Knapsack01();
+		
+		// knapsack()
 		int maxValue = knapsack01.knapsack(50, new int[]{10, 20, 30}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsack() returned max value: " + maxValue + " (expected 150)");
 		
-		maxValue = knapsack01.knapsack(50, null, new int[]{40, 70, 80});
+		try {
+			maxValue = knapsack01.knapsack(50, null, new int[]{40, 70, 80});
+		}
+		catch(Exception e) {
+			System.out.println("Knapsack01: knapsack() raised exception as expected." 
+								+ "\n\tException: " + e.getMessage()
+								+ "\n\tExpected exception: Input arrays cannot be null or empty.");
+		}
+		
+		maxValue = knapsack01.knapsack(0, new int[]{10, 20, 30}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsack() returned max value: " + maxValue + " (expected 0)");
 		
+		// knapsackMemo()
 		maxValue = knapsack01.knapsackMemo(50, new int[]{10, 20, 30}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsackMemo() returned max value: " + maxValue + " (expected 150)");
 		
-		maxValue = knapsack01.knapsackMemo(50, new int[]{10, 20, 30}, null);
+		try {
+			maxValue = knapsack01.knapsackMemo(50, null, new int[]{40, 70, 80});
+		}
+		catch(Exception e) {
+			System.out.println("Knapsack01: knapsackMemo() raised exception as expected." 
+								+ "\n\tException: " + e.getMessage()
+								+ "\n\tExpected exception: Input arrays cannot be null or empty.");
+		}
+		
+		maxValue = knapsack01.knapsackMemo(0, new int[]{10, 20, 30}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsackMemo() returned max value: " + maxValue + " (expected 0)");
 		
+		// knapsackTab()
 		maxValue = knapsack01.knapsackTab(7, new int[]{3, 2, 5}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsackTab() returned max value: " + maxValue + " (expected 150)");
 		
 		maxValue = knapsack01.knapsackTab(0, new int[]{10, 20, 30}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsackTab() returned max value: " + maxValue + " (expected 0)");
 		
+		try {
+			maxValue = knapsack01.knapsackTab(7, new int[]{}, new int[]{});
+		}
+		catch(Exception e) {
+			System.out.println("Knapsack01: knapsackTab() raised exception as expected." 
+								+ "\n\tException: " + e.getMessage()
+								+ "\n\tExpected exception: Input arrays cannot be null or empty.");
+		}
+		
+		// knapsackTabOpt()		
 		maxValue = knapsack01.knapsackTabOpt(50, new int[]{10, 20, 30}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsackTabOpt() returned max value: " + maxValue + " (expected 150)");
 		
-		maxValue = knapsack01.knapsackTabOpt(0, null, null);
-		System.out.println("Knapsack01: knapsackTabOpt() returned max value: " + maxValue + " (expected 0)");		
+		try {
+			maxValue = knapsack01.knapsackTabOpt(0, null, null);
+		}
+		catch(Exception e) {
+			System.out.println("Knapsack01: knapsackTabOpt() raised exception as expected." 
+								+ "\n\tException: " + e.getMessage()
+								+ "\n\tExpected exception: Input arrays cannot be null or empty.");
+		}	
 	}
 	
 	private static void testFibonacci() {		
@@ -71,9 +110,6 @@ public class Main {
 		System.out.println();
 		
 		KnapsackUnbounded knapsackUnbounded = new KnapsackUnbounded();
-//		int capacity = 8;
-//		int[] wts = {1, 3, 4, 5};
-//		int[] vals = {10, 40, 50, 70};
 		
 		int capacity = 7;
 		int[] wts = {3, 2, 5};
@@ -83,9 +119,18 @@ public class Main {
 		System.out.println("KnapsackUnbounded: knapsackUnbdMemo() returned max value: " + 
 							maxValue + " (expected 210)");
 		
-		maxValue = knapsackUnbounded.knapsackUnbdMemo(capacity, wts, null);
+		maxValue = knapsackUnbounded.knapsackUnbdMemo(0, wts, vals);
 		System.out.println("KnapsackUnbounded: knapsackUnbdMemo() returned max value: " + 
 							maxValue + " (expected 0)");
+		
+		try {
+			maxValue = knapsackUnbounded.knapsackUnbdMemo(capacity, wts, null);
+		}
+		catch(Exception e) {
+			System.out.println("KnapsackUnbounded: knapsackUnbdMemo() raised exception as expected." 
+					+ "\n\tException: " + e.getMessage()
+					+ "\n\tExpected exception: Input arrays cannot be null or empty.");
+		}
 		
 		maxValue = knapsackUnbounded.knapsackUnbdTab(capacity, wts, vals);
 		System.out.println("KnapsackUnbounded: knapsackUnbdTab() returned max value: " + 
@@ -95,5 +140,44 @@ public class Main {
 		System.out.println("KnapsackUnbounded: knapsackUnbdTabOpt() returned max value: " + 
 							maxValue + " (expected 210)");		
 		
+		maxValue = knapsackUnbounded.knapsackUnbdTabOpt(0, wts, vals);
+		System.out.println("KnapsackUnbounded: knapsackUnbdTabOpt() returned max value: " + 
+							maxValue + " (expected 0)");	
+		
+	}
+	
+	private static void testCoinChange() {
+		System.out.println();
+			
+		CoinChange coinChange = new CoinChange();
+		
+		int targetAmt = 5; 
+		int[] coins = {1, 2, 5};
+		int combinations = coinChange.countCombinations(targetAmt, coins);
+		System.out.println("CoinChange: countCombinations() returned " + combinations + " (expected 4)");
+		
+		targetAmt = 6;
+		coins = new int[]{5};
+		combinations = coinChange.countCombinations(targetAmt, coins);
+		System.out.println("CoinChange: countCombinations() returned " + combinations + " (expected 0)");
+		
+		targetAmt = 0;
+		coins = new int[] {1, 2, 5};
+		combinations = coinChange.countCombinations(targetAmt, coins);
+		System.out.println("CoinChange: countCombinations() returned " + combinations + " (expected 1)");
+		
+		targetAmt = 1;
+		coins = new int[] {1, 2, 5};
+		combinations = coinChange.countCombinations(targetAmt, coins);
+		System.out.println("CoinChange: countCombinations() returned " + combinations + " (expected 1)");	
+		
+		try {
+			coinChange.countCombinations(targetAmt, null);
+		}
+		catch(Exception e) {
+			System.out.println("CoinChange: countCombinations() raised exception as expected." 
+					+ "\n\tException: " + e.getMessage()
+					+ "\n\tExpected exception: Coins array cannot be null or empty.");
+		}
 	}
 }
