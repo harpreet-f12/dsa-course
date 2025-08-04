@@ -6,15 +6,29 @@ public class KnapsackUnbounded {
 
 	// DP (dynamic programming) using Memoization approach
 	public int knapsackUnbdMemo(int capacity, int[] wts, int[] vals) {
-		if(wts == null || wts.length == 0 || vals == null || vals.length == 0) {
-			return 0;
+		if (capacity < 0) {
+			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
-		
-		if(wts.length != vals.length) {
-			throw new IllegalArgumentException("Lengths of weights and values array don't match");
+
+		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
+			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
-		
+
+		if (wts.length != vals.length) {
+			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
+		}
+
 		int itemCount = wts.length;
+		
+		for(int i=0; i < itemCount; i++) {
+			if (wts[i] <= 0) {
+				throw new IllegalArgumentException("Weights must be positive");
+			}
+			
+			if (vals[i] <= 0) {
+				throw new IllegalArgumentException("Values must be positive");
+			}
+		}
 		
 		// create a memo table and initialize all cells to -1
 		int[][] memo = new int[itemCount+1][capacity+1];		
@@ -56,20 +70,38 @@ public class KnapsackUnbounded {
 	    return memo[itemCount][capacity];
 	}	
 	
+	
 	// DP using Tabulation approach
 	public int knapsackUnbdTab(int capacity, int[] wts, int[] vals) {
-		if(capacity == 0 || wts == null || wts.length == 0 
-						|| vals == null || vals.length == 0) {
-			return 0;
+		if (capacity < 0) {
+			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
+
+		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
+			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
+		}
+
+		if (wts.length != vals.length) {
+			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
+		}
+
+		int itemCount = wts.length;
 		
-		if(wts.length != vals.length) {
-			throw new IllegalArgumentException("Lengths of weights and values array don't match");
+		for(int i=0; i < itemCount; i++) {
+			if (wts[i] <= 0) {
+				throw new IllegalArgumentException("Weights must be positive");
 			}
 			
-			int itemCount = wts.length;
+			if (vals[i] <= 0) {
+				throw new IllegalArgumentException("Values must be positive");
+			}
+		}
+		
+		if(capacity == 0) {
+			return 0;
+		}
 	  
-			// dp[i][j] represents the maximum value that can be obtained with
+		// dp[i][j] represents the maximum value that can be obtained with
 		// the first 'i' items and a capacity of 'j'. In Java, array gets 
 		// initialized to zero by default.
 		int[][] dp = new int[itemCount+1][capacity+1];
@@ -96,16 +128,33 @@ public class KnapsackUnbounded {
 	
 	// DP using Tabulation with Space Optimization approach
 	public int knapsackUnbdTabOpt(int capacity, int[] wts, int[] vals) {
-		if(capacity == 0 || wts == null || wts.length == 0 
-						|| vals == null || vals.length == 0) {
-			return 0;
+		if (capacity < 0) {
+			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
-	
-		if(wts.length != vals.length) {
-			throw new IllegalArgumentException("Lengths of weights and values array don't match");
+
+		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
+			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
+		}
+
+		if (wts.length != vals.length) {
+			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
+		}
+
+		int itemCount = wts.length;
+		
+		for(int i=0; i < itemCount; i++) {
+			if (wts[i] <= 0) {
+				throw new IllegalArgumentException("Weights must be positive");
+			}
+			
+			if (vals[i] <= 0) {
+				throw new IllegalArgumentException("Values must be positive");
+			}
 		}
 		
-		int itemCount = wts.length;
+		if(capacity == 0) {
+			return 0;
+		}
 			
 		// Create a single dimensional array to store the current maximum value
 		// for each capacity
