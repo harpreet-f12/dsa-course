@@ -58,7 +58,6 @@ public class CoinChange {
 		return memo[n][targetAmt];
 	}
 	
-	
 	public int minCoins(int targetAmt, int[] coins) {	
 		// invalid case
 		if(targetAmt < 0) {
@@ -76,42 +75,39 @@ public class CoinChange {
 				throw new IllegalArgumentException("Coin values must be positive.");
 			}
 		}
+		
+		// create 2D array. Each cell of the array represents solution (i.e. min coins)
+	 	// to a subproblem for a subset of coins and a target amount.
+		int[][] dp = new int[coins.length+1][targetAmt+1]; 
+		
+		// initialize dp 
+		// 1. targetAmt+1 is a large impossible value which indicates a subproblem
+		// cannot be solved i.e. coins not found which can add up to that amount.
+		for(int i=0; i <= coins.length; i++) {
+			for(int j=0; j <= targetAmt; j++) {
+				dp[i][j] = targetAmt+1; 
+			}
+		}
+		// 2. for zero targetAmt, min coins needed are zero
+		for(int i=0; i <= coins.length; i++) {
+			dp[i][0] = 0;
+		}
+		
+		for(int i=1; i <= coins.length; i++) {
+			for(int j=1; j <= targetAmt; j++) {
+				int coin = coins[i-1];
+				if(j < coin) {	
+					// exclusion case
+					dp[i][j] = dp[i-1][j];
+				}
+				else { 
+					// inclusion case
+					dp[i][j] = Math.min(dp[i-1][j], 1 + dp[i][j-coin]);
+				}
+			}
+		}
 				
-		int[][] memo = new int[coins.length+1][targetAmt+1];
-		for(int[] row : memo) {
-			Arrays.fill(row, -1); // initialize the array with -1
-		}
-		
-		int result = minCoinsImpl(targetAmt, coins.length, coins, memo);
-	    return result == Integer.MAX_VALUE - 1 ? -1 : result; 
-		
-	}
-	   
-	private int minCoinsImpl(int targetAmt, int n, int[] coins, int[][] memo) {	
-		if(targetAmt == 0) {
-			return 0;
-		}
-		
-		if(n == 0) {
-			return Integer.MAX_VALUE - 1; // subtracting -1 to prevent overflow
-		}
-		
-		if(memo[n][targetAmt] != -1) {
-			return memo[n][targetAmt]; // the problem was solved earlier. Use memoized result.
-		}
-		
-		// skip the current coin if it is greater than the targetAmt
-		if(targetAmt < coins[n-1]) {
-			return memo[n][targetAmt] = minCoinsImpl(targetAmt, n-1, coins, memo);
-		}
-		
-		// include the coin
-		int inclusionVal = 1 + minCoinsImpl(targetAmt - coins[n-1], n, coins, memo);
-		
-		// exclude the coin
-		int exclusionVal = minCoinsImpl(targetAmt, n-1, coins, memo);		
-				
-		return memo[n][targetAmt] = Math.min(inclusionVal, exclusionVal);
-	}		
+		return dp[coins.length][targetAmt] != targetAmt+1 ? dp[coins.length][targetAmt] : -1;
+	}	
 
 }
