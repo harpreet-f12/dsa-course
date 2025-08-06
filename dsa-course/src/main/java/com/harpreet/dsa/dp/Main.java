@@ -151,6 +151,7 @@ public class Main {
 			
 		CoinChange coinChange = new CoinChange();
 		
+		// count combinations
 		int targetAmt = 5; 
 		int[] coins = {1, 2, 5};
 		int combinations = coinChange.countCombinations(targetAmt, coins);
@@ -178,6 +179,55 @@ public class Main {
 			System.out.println("CoinChange: countCombinations() raised exception as expected." 
 					+ "\n\tException: " + e.getMessage()
 					+ "\n\tExpected exception: Coins array cannot be null or empty.");
+		}
+		
+		// min coins
+		// positive test case
+		targetAmt = 10;
+		coins = new int[]{1, 2, 5};
+		int minCoins = coinChange.minCoins(targetAmt, coins);
+		System.out.println("CoinChange: minCoins() returned " + minCoins + " (expected 2)");
+		
+		// positive test case
+		targetAmt = 5;
+		coins = new int[]{1, 2, 5};
+		minCoins = coinChange.minCoins(targetAmt, coins);
+		System.out.println("CoinChange: minCoins() returned " + minCoins + " (expected 1)");
+		
+		// positive test case
+		targetAmt = 6;
+		coins = new int[]{2, 5};
+		minCoins = coinChange.minCoins(targetAmt, coins);
+		System.out.println("CoinChange: minCoins() returned " + minCoins + " (expected 3)");
+		
+		// positive test case
+		targetAmt = 7;
+		coins = new int[]{2};
+		minCoins = coinChange.minCoins(targetAmt, coins);
+		System.out.println("CoinChange: minCoins() returned " + minCoins + " (expected -1)");
+		
+		// positive test case
+		targetAmt = 11;
+		coins = new int[]{2, 5, 10};
+		minCoins = coinChange.minCoins(targetAmt, coins);
+		System.out.println("CoinChange: minCoins() returned " + minCoins + " (expected 4)");
+		
+		// edge case
+		targetAmt = 0;
+		coins = new int[]{1, 2};
+		minCoins = coinChange.minCoins(targetAmt, coins);
+		System.out.println("CoinChange: minCoins() returned " + minCoins + " (expected 0)");
+		
+		// negative test case
+		targetAmt = -1;
+		coins = new int[]{1, 2, 5};
+		try {
+			minCoins = coinChange.minCoins(targetAmt, coins);
+		}
+		catch (Exception e) {
+			System.out.println("CoinChange: minCoins() raised exception as expected." 
+					+ "\n\tException: " + e.getMessage()
+					+ "\n\tExpected exception: Target amount cannot be negative.");
 		}
 	}
 }

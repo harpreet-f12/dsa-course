@@ -53,18 +53,21 @@ public class Knapsack01 {
 	
 	// DP (dynamic programming) using Memoization approach
 	public int knapsackMemo(int capacity, int[] wts, int[] vals) {
+		// invalid case
 		if (capacity < 0) {
 			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
-
+	
+		// invalid case
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
-
+	
+		// invalid case
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
-
+	
 		int itemCount = wts.length;
 		
 		for(int i=0; i < itemCount; i++) {
@@ -119,14 +122,17 @@ public class Knapsack01 {
 	
 	// DP using Tabulation approach
 	public int knapsackTab(int capacity, int[] wts, int[] vals) {
+		// invalid case
 		if (capacity < 0) {
 			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
 
+		// invalid case
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
 
+		// invalid case
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
@@ -174,14 +180,17 @@ public class Knapsack01 {
 	
 	// DP using Tabulation with Space Optimization approach
 	public int knapsackTabOpt(int capacity, int[] wts, int[] vals) {
+		// invalid case
 		if (capacity < 0) {
 			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
 
+		// invalid case
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
 
+		// invalid case
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
