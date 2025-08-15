@@ -70,6 +70,7 @@ public class Knapsack01 {
 	
 		int itemCount = wts.length;
 		
+		// invalid case
 		for(int i=0; i < itemCount; i++) {
 			if (wts[i] <= 0) {
 				throw new IllegalArgumentException("Weights must be positive");
@@ -126,19 +127,20 @@ public class Knapsack01 {
 		if (capacity < 0) {
 			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
-
+	
 		// invalid case
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
-
+	
 		// invalid case
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
-
+	
 		int itemCount = wts.length;
 		
+		// invalid case
 		for(int i=0; i < itemCount; i++) {
 			if (wts[i] <= 0) {
 				throw new IllegalArgumentException("Weights must be positive");
@@ -147,10 +149,6 @@ public class Knapsack01 {
 			if (vals[i] <= 0) {
 				throw new IllegalArgumentException("Values must be positive");
 			}
-		}
-		
-		if(capacity == 0) {
-			return 0;
 		}
 		  
 		// dp[i][j] represents the maximum value that can be obtained with
@@ -182,21 +180,22 @@ public class Knapsack01 {
 	public int knapsackTabOpt(int capacity, int[] wts, int[] vals) {
 		// invalid case
 		if (capacity < 0) {
-			throw new IllegalArgumentException("Capacity cannot be negative");
+			throw new IllegalArgumentException("Capacity cannot be negative.");
 		}
-
+	
 		// invalid case
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
-
+	
 		// invalid case
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
-
+	
 		int itemCount = wts.length;
 		
+		// invalid case
 		for(int i=0; i < itemCount; i++) {
 			if (wts[i] <= 0) {
 				throw new IllegalArgumentException("Weights must be positive");
@@ -205,11 +204,7 @@ public class Knapsack01 {
 			if (vals[i] <= 0) {
 				throw new IllegalArgumentException("Values must be positive");
 			}
-		}
-		
-		if(capacity == 0) {
-			return 0;
-		}
+		}		
 		
 		// Create a single dimensional array to store the current maximum value
 		// for each capacity

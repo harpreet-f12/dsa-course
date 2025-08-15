@@ -60,10 +60,10 @@ public class Main {
 								+ "\n\tExpected exception: Input arrays cannot be null or empty.");
 		}
 		
-		// knapsackTabOpt()		
-		maxValue = knapsack01.knapsackTabOpt(50, new int[]{10, 20, 30}, new int[]{40, 70, 80});
+		// knapsackTabOpt()	
+		maxValue = knapsack01.knapsackTabOpt(7, new int[]{3, 2, 5}, new int[]{40, 70, 80});
 		System.out.println("Knapsack01: knapsackTabOpt() returned max value: " + maxValue + " (expected 150)");
-		
+				
 		try {
 			maxValue = knapsack01.knapsackTabOpt(0, null, null);
 		}
@@ -72,6 +72,19 @@ public class Main {
 								+ "\n\tException: " + e.getMessage()
 								+ "\n\tExpected exception: Input arrays cannot be null or empty.");
 		}	
+		
+		maxValue = knapsack01.knapsackTabOpt(0, new int[]{10, 20, 30}, new int[]{40, 70, 80});
+		System.out.println("Knapsack01: knapsackTabOpt() returned max value: " + maxValue + " (expected 0)");
+		
+		try {
+			maxValue = knapsack01.knapsackTabOpt(-1, new int[]{10, 20, 30}, new int[]{40, 70, 80});
+		}
+		catch(Exception e) {
+			System.out.println("Knapsack01: knapsackTabOpt() raised exception as expected." 
+					+ "\n\tException: " + e.getMessage()
+					+ "\n\tExpected exception: Capacity cannot be negative.");
+		}		
+
 	}
 	
 	private static void testFibonacci() {		

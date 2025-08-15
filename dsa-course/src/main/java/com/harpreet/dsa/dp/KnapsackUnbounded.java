@@ -9,15 +9,15 @@ public class KnapsackUnbounded {
 		if (capacity < 0) {
 			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
-
+	
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
-
+	
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
-
+	
 		int itemCount = wts.length;
 		
 		for(int i=0; i < itemCount; i++) {
@@ -76,15 +76,15 @@ public class KnapsackUnbounded {
 		if (capacity < 0) {
 			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
-
+	
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
-
+	
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
-
+	
 		int itemCount = wts.length;
 		
 		for(int i=0; i < itemCount; i++) {
@@ -97,7 +97,7 @@ public class KnapsackUnbounded {
 			}
 		}
 		
-		if(capacity == 0) {
+		if(capacity == 0) { // optional optimization code for edge case handling
 			return 0;
 		}
 	  
@@ -131,15 +131,15 @@ public class KnapsackUnbounded {
 		if (capacity < 0) {
 			throw new IllegalArgumentException("Capacity cannot be negative");
 		}
-
+	
 		if (wts == null || wts.length == 0 || vals == null || vals.length == 0) {
 			throw new IllegalArgumentException("Input arrays cannot be null or empty.");
 		}
-
+	
 		if (wts.length != vals.length) {
 			throw new IllegalArgumentException("Lengths of weights and values arrays should match");
 		}
-
+	
 		int itemCount = wts.length;
 		
 		for(int i=0; i < itemCount; i++) {
@@ -152,7 +152,7 @@ public class KnapsackUnbounded {
 			}
 		}
 		
-		if(capacity == 0) {
+		if(capacity == 0) { // optional optimization code for edge case handling
 			return 0;
 		}
 			
