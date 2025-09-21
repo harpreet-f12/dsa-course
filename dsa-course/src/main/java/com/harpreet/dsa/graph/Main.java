@@ -6,6 +6,9 @@ public class Main {
 		// test DFS and BFS traversals
 		testTraversalsForUndirectedGraph();
 		testTraversalsForDirectedGraph();
+		
+		// test Dijkstra
+		testDijkstra();
 	}
 	
 	public static void testTraversalsForUndirectedGraph() {
@@ -84,4 +87,29 @@ public class Main {
 		System.out.println();
 	}
 
+	public static void testDijkstra() {
+		System.out.println("Testing Dijkstra");
+		
+        GraphForDijkstra graph = new GraphForDijkstra(7);
+        graph.setVertexLabel(0, 'A');
+        graph.setVertexLabel(1, 'B');
+        graph.setVertexLabel(2, 'C');
+        graph.setVertexLabel(3, 'D');
+        graph.setVertexLabel(4, 'E');
+        graph.setVertexLabel(5, 'F');
+        graph.setVertexLabel(6, 'G');
+        
+	    graph.addEdge(0, 1, 4); // between A and B
+	    graph.addEdge(0, 2, 2); // between A and C
+	    graph.addEdge(0, 3, 5); // between A and D
+	    graph.addEdge(1, 2, 1); // between B and C 
+	    graph.addEdge(1, 4, 3); // between B and E 
+	    graph.addEdge(2, 4, 3); // between C and E 
+	    graph.addEdge(3, 5, 7); // between D and F 
+	    graph.addEdge(4, 5, 5); // between E and F  
+      
+        int startNode = 0;             
+        graph.dijkstraWithoutPQ(startNode); 
+        graph.dijkstra(startNode);
+	}
 }
