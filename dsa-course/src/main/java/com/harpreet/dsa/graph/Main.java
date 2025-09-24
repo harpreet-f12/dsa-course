@@ -12,6 +12,9 @@ public class Main {
 		
 		// test Prim's MST
 		testPrimMST();
+		
+		// test TSP
+		testTSP();
 	}
 	
 	public static void testTraversalsForUndirectedGraph() {
@@ -147,5 +150,33 @@ public class Main {
 			A to D
 			Total weight: 16
          */
+	}
+	
+	public static void testTSP() {
+		/* Input graph:
+		 * 	[ 0, 10, 15, 20 ]
+			[ 10, 0, 35, 25 ]
+			[ 15, 35, 0, 30 ]
+			[ 20, 25, 30, 0 ]
+		 *
+		 * Expected shortest route: City A -> City B -> City D -> City C -> City A
+		 * Route distance: 10+25+30+15 = 80
+		 */
+		int vertexCount = 4;
+	    GraphForTSP graph = new GraphForTSP(vertexCount);
+	    graph.setVertexLabel(0, "City A");
+	    graph.setVertexLabel(1, "City B");
+	    graph.setVertexLabel(2, "City C");
+	    graph.setVertexLabel(3, "City D");
+	    
+	    graph.addEdge(0, 1, 10);	// A - B
+	    graph.addEdge(0, 2, 15);	// A - C
+	    graph.addEdge(0, 3, 20);	// A - D
+	    graph.addEdge(1, 2, 35);	// B - C 
+	    graph.addEdge(1, 3, 25);	// B - D
+	    graph.addEdge(2, 3, 30);	// C - D   
+	  
+	    int srcNode = 0;
+	    graph.TSP(srcNode);    
 	}
 }
