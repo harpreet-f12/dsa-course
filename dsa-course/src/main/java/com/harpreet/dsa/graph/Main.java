@@ -9,6 +9,9 @@ public class Main {
 		
 		// test Dijkstra
 		testDijkstra();
+		
+		// test Prim's MST
+		testPrimMST();
 	}
 	
 	public static void testTraversalsForUndirectedGraph() {
@@ -111,5 +114,38 @@ public class Main {
         int startNode = 0;             
         graph.dijkstraWithoutPQ(startNode); 
         graph.dijkstra(startNode);
+	}
+	
+	public static void testPrimMST() {
+		int vertexCount = 6;
+        GraphForPrimMST graph = new GraphForPrimMST(vertexCount);
+        
+        graph.addVertexLabel(0, 'A');
+        graph.addVertexLabel(1, 'B');
+        graph.addVertexLabel(2, 'C');
+        graph.addVertexLabel(3, 'D');
+        graph.addVertexLabel(4, 'E');
+        graph.addVertexLabel(5, 'F');
+        
+        graph.addEdge(0, 1, 4);	// A - B
+        graph.addEdge(0, 2, 2);	// A - C
+        graph.addEdge(0, 3, 5);	// A - D
+        graph.addEdge(1, 2, 1);	// B - C 
+        graph.addEdge(1, 4, 3);	// B - E
+        graph.addEdge(2, 4, 3);	// C - E
+        graph.addEdge(3, 5, 7);	// D - F
+        graph.addEdge(4, 5, 5);	// E - F        
+      
+        int startNode = 0;
+        graph.primMST(startNode);   
+        
+        /* Expected output 
+         * 	A to C
+			C to B
+			C to E
+			E to F
+			A to D
+			Total weight: 16
+         */
 	}
 }
