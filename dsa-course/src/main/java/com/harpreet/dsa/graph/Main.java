@@ -15,6 +15,9 @@ public class Main {
 		
 		// test TSP
 		testTSP();
+		
+		// test Kahn's sorting
+		testKahn();
 	}
 	
 	public static void testTraversalsForUndirectedGraph() {
@@ -123,12 +126,12 @@ public class Main {
 		int vertexCount = 6;
         GraphForPrimMST graph = new GraphForPrimMST(vertexCount);
         
-        graph.addVertexLabel(0, 'A');
-        graph.addVertexLabel(1, 'B');
-        graph.addVertexLabel(2, 'C');
-        graph.addVertexLabel(3, 'D');
-        graph.addVertexLabel(4, 'E');
-        graph.addVertexLabel(5, 'F');
+        graph.setVertexLabel(0, 'A');
+        graph.setVertexLabel(1, 'B');
+        graph.setVertexLabel(2, 'C');
+        graph.setVertexLabel(3, 'D');
+        graph.setVertexLabel(4, 'E');
+        graph.setVertexLabel(5, 'F');
         
         graph.addEdge(0, 1, 4);	// A - B
         graph.addEdge(0, 2, 2);	// A - C
@@ -178,5 +181,23 @@ public class Main {
 	  
 	    int srcNode = 0;
 	    graph.TSP(srcNode);    
+	}
+	
+	public static void testKahn() {
+		int vertexCount = 5;
+		GraphForKahn graph = new GraphForKahn(vertexCount);
+		
+		graph.setVertexLabel(0, 'A');
+		graph.setVertexLabel(1, 'B');
+		graph.setVertexLabel(2, 'C');
+		graph.setVertexLabel(3, 'D');
+		graph.setVertexLabel(4, 'E');
+		
+		graph.addEdge(1, 0); // B to A
+		graph.addEdge(2, 0); // C to A
+		graph.addEdge(3, 2); // D to C
+		graph.addEdge(4, 2); // E to C
+		
+		graph.kahnTopologicalSort();	// Output expected: B D E C A
 	}
 }
