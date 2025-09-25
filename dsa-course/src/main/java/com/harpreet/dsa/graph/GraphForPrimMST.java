@@ -58,7 +58,7 @@ public class GraphForPrimMST {
 		adjList.get(to).add(new Edge(from, weight));
 	}
 	
-	public void addVertexLabel(int vertex, char label) {
+	public void setVertexLabel(int vertex, char label) {
 		vertexLabels[vertex] = label;
 	}
 
