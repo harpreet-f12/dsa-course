@@ -122,4 +122,39 @@ public class UndirectedGraph {
 			}
 		}
 	}	
+	
+	public boolean hasCycleUsingDFS() {
+		System.out.println("\nChecking if cycle exists in graph...");
+		
+		int startVertex = 0;
+		int parentVertex = -1;
+		boolean visited[] = new boolean[vertexCount];
+		
+		return hasCycleUsingDFS(startVertex, parentVertex, visited);
+	}
+	
+	private boolean hasCycleUsingDFS(int v1, int parent, boolean[] visited) { 
+		System.out.print(vertexLabels[v1] + " ");
+		
+		visited[v1] = true;
+		
+		for(int v2=0; v2 < vertexCount; v2++ ) {
+			if(adjMatrix[v1][v2] != 0) {
+				if(!visited[v2]) {
+					if(hasCycleUsingDFS(v2, v1, visited)) {
+						return true;
+					}
+				}
+				else if(v2 != parent) {
+					// Cycle found. Return from here.
+					System.out.println(vertexLabels[v2]);
+					System.out.println("Cycle found");
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 }

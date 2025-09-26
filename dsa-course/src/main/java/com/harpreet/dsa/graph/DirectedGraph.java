@@ -118,4 +118,41 @@ public class DirectedGraph {
 			}
 		}
 	}	
+	
+	public boolean hasCycleUsingDFS() {
+		System.out.println("\nChecking if cycle exists in graph...");
+		
+		int startVertex = 0;
+		boolean recStack[] = new boolean[vertexCount];
+		boolean visited[] = new boolean[vertexCount];		
+		
+		return hasCycleUsingDFS(startVertex, recStack, visited);
+	}
+	
+	private boolean hasCycleUsingDFS(int v1, boolean[] recStack, boolean[] visited) { 
+		System.out.print(vertexLabels[v1] + " ");
+		
+		visited[v1] = true;
+		recStack[v1] = true;
+		
+		for(int v2=0; v2 < vertexCount; v2++ ) {
+			if(adjMatrix[v1][v2] != 0) {
+				if(!visited[v2]) {
+					if(hasCycleUsingDFS(v2, recStack, visited)) {
+						return true;
+					}					
+				}
+				else if(recStack[v2]) {					
+					// cycle found. v2 is present in recursion stack.
+					System.out.println(vertexLabels[v2]);
+					System.out.println("Cycle found");
+					return true;
+				}
+			}
+		}
+		
+		recStack[v1] = false;
+		return false;
+	}
+	
 }
