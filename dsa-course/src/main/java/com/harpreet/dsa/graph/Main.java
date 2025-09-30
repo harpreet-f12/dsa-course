@@ -20,10 +20,13 @@ public class Main {
 		testKahn();
 		
 		// test cycle detection
-		testCycleDetection();
+		detectCyleUsingDFS_UndirectedGraph();
+		detectCyleUsingDFS_DirectedGraph();
+		detectCycleUsingUnionFind_UndirectedGraph();
+		
 	}
 	
-	public static void testTraversalsForUndirectedGraph() {
+	private static void testTraversalsForUndirectedGraph() {
 		int vertexCount = 12;
 		UndirectedGraph graph = new UndirectedGraph(vertexCount);
 		
@@ -61,7 +64,7 @@ public class Main {
 		System.out.println();
 	}
 	
-	public static void testTraversalsForDirectedGraph() {
+	private static void testTraversalsForDirectedGraph() {
 		int vertexCount = 12;
 		DirectedGraph graph = new DirectedGraph(vertexCount);
 		
@@ -99,7 +102,7 @@ public class Main {
 		System.out.println();
 	}
 
-	public static void testDijkstra() {
+	private static void testDijkstra() {
 		System.out.println("Testing Dijkstra");
 		
         GraphForDijkstra graph = new GraphForDijkstra(7);
@@ -125,7 +128,7 @@ public class Main {
         graph.dijkstra(startNode);
 	}
 	
-	public static void testPrimMST() {
+	private static void testPrimMST() {
 		int vertexCount = 6;
         GraphForPrimMST graph = new GraphForPrimMST(vertexCount);
         
@@ -158,7 +161,7 @@ public class Main {
          */
 	}
 	
-	public static void testTSP() {
+	private static void testTSP() {
 		/* Input graph:
 		 * 	[ 0, 10, 15, 20 ]
 			[ 10, 0, 35, 25 ]
@@ -186,7 +189,7 @@ public class Main {
 	    graph.TSP(srcNode);    
 	}
 	
-	public static void testKahn() {
+	private static void testKahn() {
 		int vertexCount = 5;
 		GraphForKahn graph = new GraphForKahn(vertexCount);
 		
@@ -202,11 +205,6 @@ public class Main {
 		graph.addEdge(4, 2); // E to C
 		
 		graph.kahnTopologicalSort();	// Output expected: B D E C A
-	}
-	
-	public static void testCycleDetection() {
-		detectCyleUsingDFS_UndirectedGraph();
-		detectCyleUsingDFS_DirectedGraph();
 	}
 	
 	private static void detectCyleUsingDFS_UndirectedGraph() {
@@ -242,21 +240,31 @@ public class Main {
 		graph.addEdge(10, 11); // K - L
 		
 		boolean hasCycle = graph.hasCycleUsingDFS();
-		System.out.println("Contains cycle? : " + hasCycle + " , Expected: true");
+		System.out.println("Cycle detected by DFS? : " + hasCycle + " , Expected: true");
 	}
 	
 	private static void detectCyleUsingDFS_DirectedGraph() {
 		DirectedGraph directedGraph1 = getDirectedGraph1();
 		boolean hasCycle = directedGraph1.hasCycleUsingDFS();
-		System.out.println("Contains cycle? : " + hasCycle + " , Expected: false");
+		System.out.println("Cycle detected by DFS? : " + hasCycle + " , Expected: false");
 		
 		DirectedGraph directedGraph2 = getDirectedGraph2();
 		hasCycle = directedGraph2.hasCycleUsingDFS();
-		System.out.println("Contains cycle? : " + hasCycle + " , Expected: true");
+		System.out.println("Cycle detected by DFS? : " + hasCycle + " , Expected: true");
 		
 		DirectedGraph directedGraph3 = getDirectedGraph3();
 		hasCycle = directedGraph3.hasCycleUsingDFS();
-		System.out.println("Contains cycle? : " + hasCycle + " , Expected: false");
+		System.out.println("Cycle detected by DFS? : " + hasCycle + " , Expected: false");
+	}
+	
+	private static void detectCycleUsingUnionFind_UndirectedGraph() {
+		GraphForUnionFind graph1 = getUndirectedGraphForUnionFind1();
+		boolean hasCycle = graph1.hasCycle();		
+		System.out.println("Cycle detected by Union-Find? : " + hasCycle + ", Expected: true");
+		
+		GraphForUnionFind graph2 = getUndirectedGraphForUnionFind2();
+		hasCycle = graph2.hasCycle();		
+		System.out.println("Cycle detected by Union-Find? : " + hasCycle + ", Expected: false");
 	}
 	
 	private static DirectedGraph getDirectedGraph1() {
@@ -325,6 +333,20 @@ public class Main {
 		graph.addEdge(2, 3); // C to D
 		graph.addEdge(0, 3); // A to D
 		
+		return graph;
+	}
+	
+	private static GraphForUnionFind getUndirectedGraphForUnionFind1() {
+		int vertexCount = 4;
+		int[][] edgeList = {{0, 1}, {1, 2}, {2, 3}, {3, 0}}; // cycle
+		GraphForUnionFind graph = new GraphForUnionFind(edgeList, vertexCount);		
+		return graph;
+	}
+	
+	private static GraphForUnionFind getUndirectedGraphForUnionFind2() {
+		int vertexCount = 4;
+		int[][] edgeList = {{0, 1}, {1, 2}, {2, 3}}; // no cycle
+		GraphForUnionFind graph = new GraphForUnionFind(edgeList, vertexCount);		
 		return graph;
 	}
 	
